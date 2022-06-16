@@ -10,24 +10,24 @@ import json
 import sendmail
 
 
-# def get_categories():
-#     with open('categories.json') as c:
-#         data = json.load(c)
-#         return data
+def get_categories():
+    with open('categories.json') as c:
+        data = json.load(c)
+        return data
 
 
-# def formatted_categories(filteredcats):
-#     opts = []
-#     for cat in filteredcats:
-#         x = {
-#             "text": {
-#                 "type": "plain_text",
-#                 "text": cat["name"]
-#             },
-#             "value": str(cat["id"])
-#         }
-#         opts.append(x)
-#     return opts
+def formatted_categories(filteredcats):
+    opts = []
+    for cat in filteredcats:
+        x = {
+            "text": {
+                "type": "plain_text",
+                "text": cat["name"]
+            },
+            "value": str(cat["id"])
+        }
+        opts.append(x)
+    return opts
 
 OPTIONAL_INPUT_VALUE = "None"
 
@@ -504,16 +504,16 @@ def make_body(date, ao, q, pax, fngs, count, moleskine):
         "\n" + moleskine
 
 
-# @slack_app.options("es_categories")
-# async def show_categories(ack, body, logger):
-#     await ack()
-#     lookup = body["value"]
-#     filtered = [x for x in categories if lookup.lower() in x["name"].lower()]
-#     output = formatted_categories(filtered)
-#     options = output
-#     logger.info(options)
+@slack_app.options("es_categories")
+async def show_categories(ack, body, logger):
+    await ack()
+    lookup = body["value"]
+    filtered = [x for x in categories if lookup.lower() in x["name"].lower()]
+    output = formatted_categories(filtered)
+    options = output
+    logger.info(options)
 
-#     await ack(options=options)
+    await ack(options=options)
 
 
 async def get_pax(pax):

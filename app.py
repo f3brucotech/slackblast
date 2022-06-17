@@ -241,7 +241,7 @@ async def command(ack, body, respond, client, logger):
 					{
 						"text": {
 							"type": "plain_text",
-							"text": "*The Brunswick Stew",
+							"text": "*The Brunswick Stew*",
 							"emoji": true
 						},
 						"value": "value-0"

@@ -226,18 +226,16 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-        {
-            "type": "input",
-            "block_id": "the_ao",
-            "element": {
-                "type": "static_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Select the AO",
-                    "emoji": True
-                },
-		    {
-                "options": [
+{
+			"type": "input",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Input the AO",
+					"emoji": true
+				},
+				"options": [
 					{
 						"text": {
 							"type": "plain_text",
@@ -262,15 +260,17 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-2"
 					}
-		],
-                "action_id": "static_select-action"
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "The AO",
-                "emoji": True
-            }
-        },
+				],
+				"action_id": "static_select-action"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "The AO",
+				"emoji": true
+			}
+		}
+	]
+},
         {
             "type": "input",
             "block_id": "date",

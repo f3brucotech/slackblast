@@ -230,13 +230,38 @@ async def command(ack, body, respond, client, logger):
             "type": "input",
             "block_id": "the_ao",
             "element": {
-                "type": "channels_select",
+                "type": "static_select",
                 "placeholder": {
                     "type": "plain_text",
                     "text": "Select the AO",
                     "emoji": True
                 },
-                "action_id": "channels_select-action"
+                "options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "*The Brunswick Stew",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "*Friday in LA*",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "*Frying Pan*",
+							"emoji": true
+						},
+						"value": "value-2"
+					}
+                "action_id": "static_select-action"
             },
             "label": {
                 "type": "plain_text",
@@ -418,7 +443,7 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
+    the_ao = result["the_ao"]["static_select-action"]["selected_channel"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]

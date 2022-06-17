@@ -228,10 +228,10 @@ async def command(ack, body, respond, client, logger):
         },
         {
             "type": "input",
-            "block_id": "the_AO",
+            "block_id": "the_ao",
             "element": {
                 "type": "plain_text_input",
-                "action_id": "the_AO",
+                "action_id": "the_ao",
                 "placeholder": {
                     "type": "plain_text",
                     "text": "Enter the AO Name"

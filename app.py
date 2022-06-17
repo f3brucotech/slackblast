@@ -236,6 +236,7 @@ async def command(ack, body, respond, client, logger):
                     "text": "Select the AO",
                     "emoji": True
                 },
+		    {
                 "options": [
 					{
 						"text": {
@@ -261,6 +262,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-2"
 					}
+		],
                 "action_id": "static_select-action"
             },
             "label": {

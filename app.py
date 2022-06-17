@@ -228,15 +228,14 @@ async def command(ack, body, respond, client, logger):
         },
         {
             "type": "input",
-            "block_id": "the_ao",
+            "block_id": "the_AO",
             "element": {
-                "type": "channels_select",
+                "type": "plain_text_input",
+                "action_id": "the_AO",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the AO",
-                    "emoji": True
-                },
-                "action_id": "channels_select-action"
+                    "text": "Enter the AO Name"
+                }
             },
             "label": {
                 "type": "plain_text",

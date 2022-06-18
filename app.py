@@ -296,7 +296,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-4"
 					},
-										{
+						{
 						"text": {
 							"type": "plain_text",
 							"text": "Middle Earth",
@@ -304,7 +304,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-5"
 					},
-										{
+						{
 						"text": {
 							"type": "plain_text",
 							"text": "The River",
@@ -312,7 +312,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-6"
 					},
-										{
+						{
 						"text": {
 							"type": "plain_text",
 							"text": "Run Brunswick Forest Run (RBFR)",
@@ -320,7 +320,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-7"
 					},
-										{
+						{
 						"text": {
 							"type": "plain_text",
 							"text": "South Beach",
@@ -328,7 +328,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "value-8"
 					},
-										{
+						{
 						"text": {
 							"type": "plain_text",
 							"text": "Warrior Wednesday",
@@ -520,7 +520,7 @@ async def view_submission(ack, body, logger, client):
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
-    the_wrkout = result["the_ao"]["static_select-action"]["selected_option"]["value"]
+    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]

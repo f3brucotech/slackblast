@@ -244,6 +244,49 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
+        		{
+			"type": "input",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select the AO",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "The Brunswick Stew",
+							"emoji": True
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Friday in LA",
+							"emoji": True
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Frying Pan",
+							"emoji": True
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "static_select-action"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "The Workout",
+				"emoji": True
+			}
+          },
         {
             "type": "input",
             "block_id": "date",

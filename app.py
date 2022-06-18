@@ -244,49 +244,6 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-	    		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": "Select the backblast channel"
-			},
-			"accessory": {
-				"type": "static_select",
-			        "block_id": "the_workout",
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Select an item",
-					"emoji": True
-				},
-				"options": [
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "The Brunswick Stew",
-							"emoji": True
-						},
-						"value": "value-0"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Friday in LA",
-							"emoji": True
-						},
-						"value": "value-1"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Frying Pan",
-							"emoji": True
-						},
-						"value": "value-2"
-					}
-				],
-				"action_id": "static_select-action"
-			},
-		},
         {
             "type": "input",
             "block_id": "date",

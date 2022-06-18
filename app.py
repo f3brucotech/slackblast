@@ -244,7 +244,13 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-		{
+	    		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Select the backblast channel"
+			},
+			"accessory": {
 				"type": "static_select",
 			        "block_id": "the_workout",
 				"placeholder": {
@@ -280,13 +286,7 @@ async def command(ack, body, respond, client, logger):
 				],
 				"action_id": "static_select-action"
 			},
-	    {
-	                "label": {
-                "type": "plain_text",
-                "text": "The Workout",
-                "emoji": True
-            }
-        },
+		},
         {
             "type": "input",
             "block_id": "date",

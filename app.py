@@ -129,31 +129,7 @@ async def command(ack, body, respond, client, logger):
     current_channel_name = "Me" if is_direct_message else body.get(
         "channel_id")
 
-    # The channel where user submitted the slashcommand
-    current_channel_option = {
-        "text": {
-            "type": "plain_text",
-            "text": "Current Channel"
-        },
-        "value": current_channel_id
-    }
 
-    # In .env, CHANNEL=USER
-    channel_me_option = {
-        "text": {
-            "type": "plain_text",
-            "text": "Me"
-        },
-        "value": user_id
-    }
-    # In .env, CHANNEL=THE_AO
-    channel_the_ao_option = {
-        "text": {
-            "type": "plain_text",
-            "text": "The AO Channel"
-        },
-        "value": "THE_AO"
-    }
     # In .env, CHANNEL=<channel-id>
     channel_configured_ao_option = {
         "text": {
@@ -162,52 +138,17 @@ async def command(ack, body, respond, client, logger):
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
-    # User may have typed /slackblast #<channel-name> AND
-    # slackblast slashcommand is checked to escape channels.
-    #   Escape channels, users, and links sent to your app
-    #   Escaped: <#C1234|general>
-    channel_id, channel_name = get_channel_id_and_name(body, logger)
-    channel_user_specified_channel_option = {
-        "text": {
-            "type": "plain_text",
-            "text": '# ' + channel_name
-        },
-        "value": channel_id
-    }
 
     channel_options = []
 
     # figure out which channel should be default/initial and then remaining operations
     if channel_id:
         initial_channel_option = channel_user_specified_channel_option
-        channel_options.append(channel_user_specified_channel_option)
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-        channel_options.append(channel_the_ao_option)
         channel_options.append(channel_configured_ao_option)
-    elif config('CHANNEL', default=current_channel_id) == 'USER':
-        initial_channel_option = channel_me_option
-        channel_options.append(channel_me_option)
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_the_ao_option)
-    elif config('CHANNEL', default=current_channel_id) == 'THE_AO':
-        initial_channel_option = channel_the_ao_option
-        channel_options.append(channel_the_ao_option)
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-    elif config('CHANNEL', default=current_channel_id) == current_channel_id:
-        # if there is no .env CHANNEL value, use default of current channel
-        initial_channel_option = current_channel_option
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-        channel_options.append(channel_the_ao_option)
     else:
         # Default to using the .env CHANNEL value which at this point must be a channel id
         initial_channel_option = channel_configured_ao_option
         channel_options.append(channel_configured_ao_option)
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-        channel_options.append(channel_the_ao_option)
 
     blocks = [
         {
@@ -444,7 +385,7 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_ao = result["the_ao"]["static_select-action"]["selected_channel"]
+    the_ao = result["the_ao"]["static_select-action"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -477,7 +418,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*AO*: <#" + the_ao + ">"
+        ao_msg = f"*AO*: " + the_ao
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs

@@ -233,16 +233,58 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the AO",
+                    "text": "Select the backblast channel",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "The AO",
+                "text": "The Channel",
                 "emoji": True
             }
+        },
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Pick an item from the dropdown list"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "The Brunswick Stew",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Friday in LA",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Frying Pan",
+							"emoji": true
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "static_select-action"
+			}
         },
         {
             "type": "input",

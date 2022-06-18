@@ -255,14 +255,14 @@ async def command(ack, body, respond, client, logger):
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select an item",
-					"emoji": true
+					"emoji": True
 				},
 				"options": [
 					{
 						"text": {
 							"type": "plain_text",
 							"text": "The Brunswick Stew",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-0"
 					},
@@ -270,7 +270,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "Friday in LA",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-1"
 					},
@@ -278,7 +278,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "Frying Pan",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-2"
 					}

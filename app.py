@@ -136,7 +136,7 @@ async def command(ack, body, respond, client, logger):
             "type": "plain_text",
             "text": "Preconfigured Backblast Channel"
         },
-        "value": config('CHANNEL', default=current_channel_id)
+        "value": config('CHANNEL')
     }
 
     channel_options = []
@@ -317,28 +317,6 @@ async def command(ack, body, respond, client, logger):
                 "text": "The Moleskine",
                 "emoji": True
             }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "section",
-            "block_id": "destination",
-            "text": {
-                "type": "plain_text",
-                "text": "Choose where to post this"
-            },
-            "accessory": {
-                "action_id": "destination-action",
-                "type": "static_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Choose where"
-                },
-                "initial_option": initial_channel_option,
-                "options": channel_options
-            }
-        }
     ]
 
     if config('EMAIL_TO', default='') and not config('EMAIL_OPTION_HIDDEN_IN_MODAL', default=False, cast=bool):
@@ -391,7 +369,6 @@ async def view_submission(ack, body, logger, client):
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
-    destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
@@ -399,7 +376,7 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
 
-    chan = destination
+    chan = channel_configured_ao_option
     if chan == 'THE_AO':
         chan = the_ao
 

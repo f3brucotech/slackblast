@@ -393,7 +393,7 @@ async def command(ack, body, respond, client, logger):
                     "type": "plain_text",
                     "text": "Choose where"
                 },
-                "initial_option": channel_configured_ao_option,
+                "initial_option": initial_channel_option,
             }
         }
     ]
@@ -456,8 +456,6 @@ async def view_submission(ack, body, logger, client):
     logger.info(result)
 
       chan = destination
-    if chan == 'THE_AO':
-        chan = the_ao
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
         chan))

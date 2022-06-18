@@ -252,7 +252,6 @@ async def command(ack, body, respond, client, logger):
 			},
 			"accessory": {
 				"type": "static_select",
-                "block_id": "the_wrkout",
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select the workout",

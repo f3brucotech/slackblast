@@ -160,7 +160,7 @@ async def command(ack, body, respond, client, logger):
             "type": "plain_text",
             "text": "Preconfigured Backblast Channel"
         },
-        "value": "C03K2N3TXLN"
+        "value": config('CHANNEL', default=current_channel_id)
     }
     # User may have typed /slackblast #<channel-name> AND
     # slackblast slashcommand is checked to escape channels.
@@ -178,8 +178,36 @@ async def command(ack, body, respond, client, logger):
     channel_options = []
 
     # figure out which channel should be default/initial and then remaining operations
-      channel_options.append(channel_configured_ao_option)
-      channel_options.append(channel_me_option)
+    if channel_id:
+        initial_channel_option = channel_user_specified_channel_option
+        channel_options.append(channel_user_specified_channel_option)
+        channel_options.append(current_channel_option)
+        channel_options.append(channel_me_option)
+        channel_options.append(channel_the_ao_option)
+        channel_options.append(channel_configured_ao_option)
+    elif config('CHANNEL', default=current_channel_id) == 'USER':
+        initial_channel_option = channel_me_option
+        channel_options.append(channel_me_option)
+        channel_options.append(current_channel_option)
+        channel_options.append(channel_the_ao_option)
+    elif config('CHANNEL', default=current_channel_id) == 'THE_AO':
+        initial_channel_option = channel_the_ao_option
+        channel_options.append(channel_the_ao_option)
+        channel_options.append(current_channel_option)
+        channel_options.append(channel_me_option)
+    elif config('CHANNEL', default=current_channel_id) == current_channel_id:
+        # if there is no .env CHANNEL value, use default of current channel
+        initial_channel_option = current_channel_option
+        channel_options.append(current_channel_option)
+        channel_options.append(channel_me_option)
+        channel_options.append(channel_the_ao_option)
+    else:
+        # Default to using the .env CHANNEL value which at this point must be a channel id
+        initial_channel_option = channel_configured_ao_option
+        channel_options.append(channel_configured_ao_option)
+        channel_options.append(current_channel_option)
+        channel_options.append(channel_me_option)
+        channel_options.append(channel_the_ao_option)
 
     blocks = [
         {
@@ -340,7 +368,7 @@ async def command(ack, body, respond, client, logger):
                     "type": "plain_text",
                     "text": "Choose where"
                 },
-                "initial_option": channel_configured_ao_option,
+                "initial_option": initial_channel_option,
                 "options": channel_options
             }
         }

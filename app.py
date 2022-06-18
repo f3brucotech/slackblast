@@ -291,7 +291,7 @@ async def command(ack, body, respond, client, logger):
 						{
 						"text": {
 							"type": "plain_text",
-							"text": "Lightship Ruck 'n Run",
+							"text": "Lightship Ruck n Run",
 							"emoji": True
 						},
 						"value": "value-4"
@@ -315,7 +315,7 @@ async def command(ack, body, respond, client, logger):
 						{
 						"text": {
 							"type": "plain_text",
-							"text": "Run Brunswick Forest Run (RBFR)",
+							"text": "Run Brunswick Forest Run",
 							"emoji": True
 						},
 						"value": "value-7"

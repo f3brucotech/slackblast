@@ -233,14 +233,14 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the backblast channel",
+                    "text": "Select the AO",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "The Channel",
+                "text": "The AO",
                 "emoji": True
             }
         },
@@ -451,7 +451,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*BACKBLASTCHANNEL*: <#" + the_ao + ">"
+        ao_msg = f"*AO*: <#" + the_ao + ">"
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -473,7 +473,6 @@ async def view_submission(ack, body, logger, client):
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title
-
             date_msg = f"DATE: " + the_date
             ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
             q_msg = f"Q: " + q_name

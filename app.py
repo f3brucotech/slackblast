@@ -245,12 +245,6 @@ async def command(ack, body, respond, client, logger):
             }
         },
         {
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": "Pick an item from the dropdown list"
-			},
-			"accessory": {
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",

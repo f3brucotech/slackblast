@@ -384,7 +384,7 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Your backblast will be posted to:"
+                "text": "Your backblast will be posted to"
             },
             "accessory": {
                 "action_id": "destination-action",
@@ -461,7 +461,7 @@ async def view_submission(ack, body, logger, client):
         chan = the_ao
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan))
+        chan, destination, the_ao))
 
     ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]

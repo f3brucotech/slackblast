@@ -178,12 +178,8 @@ async def command(ack, body, respond, client, logger):
     channel_options = []
 
     # figure out which channel should be default/initial and then remaining operations
-    channel_id:
-      initial_channel_option = channel_configured_ao_option
       channel_options.append(channel_configured_ao_option)
-      channel_options.append(current_channel_option)
       channel_options.append(channel_me_option)
-      channel_options.append(channel_the_ao_option)
 
     blocks = [
         {

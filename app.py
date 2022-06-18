@@ -245,6 +245,48 @@ async def command(ack, body, respond, client, logger):
             }
         },
         {
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Pick an item from the dropdown list"
+			},
+			"accessory": {
+				"type": "static_select",
+                "block_id": "the_wrkout",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select the workout",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "The Brunswick Stew",
+							"emoji": True
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Friday in LA",
+							"emoji": True
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Frying Pan",
+							"emoji": True
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "static_select-action"
+			},
+        {
             "type": "input",
             "block_id": "date",
             "element": {

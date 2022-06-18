@@ -226,20 +226,21 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-{
-			"type": "input",
-			"element": {
-				"type": "static_select",
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Input the AO",
-					"emoji": true
-				},
+        {
+            "type": "input",
+            "block_id": "the_ao",
+            "element": {
+                "type": "static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
 				"options": [
 					{
 						"text": {
 							"type": "plain_text",
-							"text": "*The Brunswick Stew*",
+							"text": "The Brunswick Stew",
 							"emoji": true
 						},
 						"value": "value-0"
@@ -247,7 +248,7 @@ async def command(ack, body, respond, client, logger):
 					{
 						"text": {
 							"type": "plain_text",
-							"text": "*Friday in LA*",
+							"text": "Friday in LA",
 							"emoji": true
 						},
 						"value": "value-1"
@@ -255,22 +256,20 @@ async def command(ack, body, respond, client, logger):
 					{
 						"text": {
 							"type": "plain_text",
-							"text": "*Frying Pan*",
+							"text": "Frying Pan",
 							"emoji": true
 						},
 						"value": "value-2"
 					}
-				],
-				"action_id": "static_select-action"
-			},
-			"label": {
-				"type": "plain_text",
-				"text": "The AO",
-				"emoji": true
-			}
-		}
-	]
-},
+				],		    
+                "action_id": "static_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The AO",
+                "emoji": True
+            }
+        },
         {
             "type": "input",
             "block_id": "date",

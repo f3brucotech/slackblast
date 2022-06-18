@@ -374,7 +374,27 @@ async def command(ack, body, respond, client, logger):
                 "type": "plain_text",
                 "text": "The Moleskine",
                 "emoji": True
-              }
+            }
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "block_id": "destination",
+            "text": {
+                "type": "plain_text",
+                "text": "Your backblast will be posted to:"
+            },
+            "accessory": {
+                "action_id": "destination-action",
+                "type": "static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Choose where"
+                },
+                "initial_option": channel_configured_ao_option,
+            }
         }
     ]
 
@@ -435,12 +455,14 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
 
-    chan = channel_configured_ao_option
+      chan = destination
+    if chan == 'THE_AO':
+        chan = the_ao
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
         chan))
 
-    ao_name = channel_configured_ao_option
+    ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
 

@@ -245,14 +245,8 @@ async def command(ack, body, respond, client, logger):
             }
         },
 		{
-			"type": "section",
-			"block_id": "the_workout",
-			"text": {
-				"type": "mrkdwn",
-				"text": "Pick an item from the dropdown list"
-			},
-			"accessory": {
 				"type": "static_select",
+			        "block_id": "the_workout",
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select an item",
@@ -285,7 +279,13 @@ async def command(ack, body, respond, client, logger):
 					}
 				],
 				"action_id": "static_select-action"
-			}
+			},
+	    {
+	                "label": {
+                "type": "plain_text",
+                "text": "The Workout",
+                "emoji": True
+            }
         },
         {
             "type": "input",
@@ -486,7 +486,6 @@ async def view_submission(ack, body, logger, client):
     ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
-    wrkout_name = the_workout
 
     msg = ""
     try:
@@ -522,7 +521,7 @@ async def view_submission(ack, body, logger, client):
 
             date_msg = f"DATE: " + the_date
             ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
-	    wrkout_msg = f"Q: " + wrkout_msg
+	    wrkout_msg = f"Workout: " + wrkout_msg
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
@@ -541,10 +540,10 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, ao, wrkout, q, pax, fngs, count, moleskine):
+def make_body(date, ao, wrkout_msg, q, pax, fngs, count, moleskine):
     return date + \
         "\n" + ao + \
-        "\n" + wrkout + \
+        "\n" + wrkout_msg + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

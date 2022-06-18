@@ -159,7 +159,7 @@ async def command(ack, body, respond, client, logger):
             "type": "plain_text",
             "text": "Preconfigured Backblast Channel"
         },
-        "value": config('CHANNEL', default=current_channel_id)
+        "value": config('CHANNEL')
     }
     # User may have typed /slackblast #<channel-name> AND
     # slackblast slashcommand is checked to escape channels.
@@ -438,9 +438,9 @@ async def view_submission(ack, body, logger, client):
     chan = channel_configured_ao_option
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination, the_ao))
+        chan))
 
-    ao_name = await get_channel_name(the_ao, logger, client)
+    ao_name = channel_configured_ao_option
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
 

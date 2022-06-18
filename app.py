@@ -10,24 +10,24 @@ import json
 import sendmail
 
 
-def get_categories():
-    with open('categories.json') as c:
-        data = json.load(c)
-        return data
+# def get_categories():
+#     with open('categories.json') as c:
+#         data = json.load(c)
+#         return data
 
 
-def formatted_categories(filteredcats):
-    opts = []
-    for cat in filteredcats:
-        x = {
-            "text": {
-                "type": "plain_text",
-                "text": cat["name"]
-            },
-            "value": str(cat["id"])
-        }
-        opts.append(x)
-    return opts
+# def formatted_categories(filteredcats):
+#     opts = []
+#     for cat in filteredcats:
+#         x = {
+#             "text": {
+#                 "type": "plain_text",
+#                 "text": cat["name"]
+#             },
+#             "value": str(cat["id"])
+#         }
+#         opts.append(x)
+#     return opts
 
 OPTIONAL_INPUT_VALUE = "None"
 
@@ -111,6 +111,7 @@ async def get_user_names(array_of_user_ids, logger, client):
         logger.info('user_name is {}'.format(user_name))
     logger.info('names are {}'.format(names))
     return names
+
 
 @slack_app.command("/slackblast")
 @slack_app.command("/backblast")
@@ -229,39 +230,13 @@ async def command(ack, body, respond, client, logger):
             "type": "input",
             "block_id": "the_ao",
             "element": {
-                "type": "static_select",
+                "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
                     "text": "Select the AO",
                     "emoji": True
                 },
-				"options": [
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "The Brunswick Stew",
-							"emoji": True
-						},
-						"value": "value-0"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Friday in LA",
-							"emoji": True
-						},
-						"value": "value-1"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Frying Pan",
-							"emoji": True
-						},
-						"value": "value-2"
-					}
-				],		    
-                "action_id": "static_select-action"
+                "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
@@ -384,7 +359,7 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Your backblast will be posted to"
+                "text": "Choose where to post this"
             },
             "accessory": {
                 "action_id": "destination-action",
@@ -394,7 +369,7 @@ async def command(ack, body, respond, client, logger):
                     "text": "Choose where"
                 },
                 "initial_option": initial_channel_option,
-		"options": channel_options
+                "options": channel_options
             }
         }
     ]
@@ -443,12 +418,13 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_ao = result["the_ao"]["static_select-action"]["value"]
+    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
+    destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
@@ -456,8 +432,8 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
 
-      chan = destination
-      if chan == 'THE_AO':
+    chan = destination
+    if chan == 'THE_AO':
         chan = the_ao
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
@@ -475,7 +451,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*AO*: " + the_ao
+        ao_msg = f"*AO*: <#" + the_ao + ">"
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -528,16 +504,16 @@ def make_body(date, ao, q, pax, fngs, count, moleskine):
         "\n" + moleskine
 
 
-@slack_app.options("es_categories")
-async def show_categories(ack, body, logger):
-    await ack()
-    lookup = body["value"]
-    filtered = [x for x in categories if lookup.lower() in x["name"].lower()]
-    output = formatted_categories(filtered)
-    options = output
-    logger.info(options)
+# @slack_app.options("es_categories")
+# async def show_categories(ack, body, logger):
+#     await ack()
+#     lookup = body["value"]
+#     filtered = [x for x in categories if lookup.lower() in x["name"].lower()]
+#     output = formatted_categories(filtered)
+#     options = output
+#     logger.info(options)
 
-    await ack(options=options)
+#     await ack(options=options)
 
 
 async def get_pax(pax):

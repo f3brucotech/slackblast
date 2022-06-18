@@ -419,7 +419,6 @@ async def view_submission(ack, body, logger, client):
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
-    the_workout = result["the_workout"]["static_select-action"]["selected_option"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -453,7 +452,6 @@ async def view_submission(ack, body, logger, client):
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*BACKBLASTCHANNEL*: <#" + the_ao + ">"
-	wrkout_msg = f"*WORKOUT*: " + the_workout
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -462,7 +460,7 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, ao_msg, wrkout_msg, q_msg, pax_msg,
+            body = make_body(date_msg, ao_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
@@ -478,7 +476,6 @@ async def view_submission(ack, body, logger, client):
 
             date_msg = f"DATE: " + the_date
             ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
-	    wrkout_msg = f"Workout: " + wrkout_msg
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
@@ -486,7 +483,7 @@ async def view_submission(ack, body, logger, client):
             moleskine_msg = moleskine
 
             body_email = make_body(
-                date_msg, ao_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
+                date_msg, ao_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
 
             logger.info('\nEmail Sent! \n{}'.format(body_email))
@@ -500,7 +497,6 @@ async def view_submission(ack, body, logger, client):
 def make_body(date, ao, wrkout, q, pax, fngs, count, moleskine):
     return date + \
         "\n" + ao + \
-        "\n" + wrkout + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

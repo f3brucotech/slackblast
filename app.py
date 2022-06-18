@@ -278,7 +278,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-2"
-					}
+					},
 						{
 						"text": {
 							"type": "plain_text",
@@ -286,7 +286,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-3"
-					}
+					},
 					
 						{
 						"text": {
@@ -295,7 +295,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-4"
-					}
+					},
 										{
 						"text": {
 							"type": "plain_text",
@@ -303,7 +303,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-5"
-					}
+					},
 										{
 						"text": {
 							"type": "plain_text",
@@ -311,7 +311,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-6"
-					}
+					},
 										{
 						"text": {
 							"type": "plain_text",
@@ -319,7 +319,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-7"
-					}
+					},
 										{
 						"text": {
 							"type": "plain_text",
@@ -327,7 +327,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "value-8"
-					}
+					},
 										{
 						"text": {
 							"type": "plain_text",

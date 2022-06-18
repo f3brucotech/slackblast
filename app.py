@@ -160,7 +160,7 @@ async def command(ack, body, respond, client, logger):
             "type": "plain_text",
             "text": "Preconfigured Backblast Channel"
         },
-        "value": config('CHANNEL', default=current_channel_id)
+        "value": "C03K2N3TXLN"
     }
     # User may have typed /slackblast #<channel-name> AND
     # slackblast slashcommand is checked to escape channels.
@@ -340,7 +340,7 @@ async def command(ack, body, respond, client, logger):
                     "type": "plain_text",
                     "text": "Choose where"
                 },
-                "initial_option": initial_channel_option,
+                "initial_option": channel_configured_ao_option,
                 "options": channel_options
             }
         }

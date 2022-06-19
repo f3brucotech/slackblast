@@ -343,7 +343,7 @@ async def command(ack, body, respond, client, logger):
 				"text": "The Workout",
 				"emoji": True
 			}
-		}],
+		}]
           },
         {
             "type": "input",

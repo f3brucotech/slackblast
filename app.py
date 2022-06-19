@@ -262,79 +262,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "The Brunswick Stew"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Friday in LA",
-							"emoji": True
-						},
-						"value": "Friday in LA"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Frying Pan",
-							"emoji": True
-						},
-						"value": "Frying Pan"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Leland Metal Mania",
-							"emoji": True
-						},
-						"value": "Leland Metal Mania"
-					},	
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Lightship Ruck 'n Run",
-							"emoji": True
-						},
-						"value": "Lightship Ruck 'n Run"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Middle Earth",
-							"emoji": True
-						},
-						"value": "Middle Earth"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "The River",
-							"emoji": True
-						},
-						"value": "The River"
-					},	
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Run Brunswick Forest Run (RBFR)",
-							"emoji": True
-						},
-						"value": "Run Brunswick Forest Run (RBFR)"
-					},	
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "South Beach",
-							"emoji": True
-						},
-						"value": "South Beach"
-					},	
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "Warrior Wednesday",
-							"emoji": True
-						},
-						"value": "Warrior Wednesday"
-					},			
+					}		
 					  ],
 				"action_id": "static_select-action"
 			},
@@ -343,7 +271,7 @@ async def command(ack, body, respond, client, logger):
 				"text": "The Workout",
 				"emoji": True
 			}
-		],
+			 ],
           },
         {
             "type": "input",
@@ -531,7 +459,6 @@ async def view_submission(ack, body, logger, client):
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
     pax_formatted = await get_pax(pax)
-    wrkout_res = await get_wrkout(the_wrkout)
 
     logger.info(result)
 
@@ -555,7 +482,6 @@ async def view_submission(ack, body, logger, client):
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*Channel*: <#" + the_ao + ">"
-	wrkout_msg = f"*AO*: " + workout_res
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -564,7 +490,7 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, ao_msg, wrkout_msg, q_msg, pax_msg,
+            body = make_body(date_msg, ao_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)

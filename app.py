@@ -553,6 +553,7 @@ async def view_submission(ack, body, logger, client):
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*Channel*: <#" + the_ao + ">"
+	wrkout_msg = f"*AO*: " + the_wrkout
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs

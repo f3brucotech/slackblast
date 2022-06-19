@@ -278,65 +278,10 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "Frying Pan"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "Metal Mania Monday",
-							"emoji": True
-						},
-						"value": "Metal Mania Monday"
-					},
-					
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "Lightship Ruck n Run",
-							"emoji": True
-						},
-						"value": "Lightship Ruck n Run"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "Middle Earth",
-							"emoji": True
-						},
-						"value": "Middle Earth"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "The River",
-							"emoji": True
-						},
-						"value": "The River"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "Run Brunswick Forest Run",
-							"emoji": True
-						},
-						"value": "Run Brunswick Forest Run"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "South Beach",
-							"emoji": True
-						},
-						"value": "South Beach"
-					},
-						{
-						"text": {
-							"type": "plain_text",
-							"text": "Warrior Wednesday",
-							"emoji": True
-						},
-						"value": "Warrior Wednesday"
 					}
-				],
+					   ],
+			}
+			},
 				"action_id": "static_select-action"
 			},
 			"label": {

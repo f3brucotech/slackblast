@@ -245,7 +245,7 @@ async def command(ack, body, respond, client, logger):
             }
         },
         		{
-			"type": "actions",
+			"type": "input",
 			"block_id": "the_wrkout",
 			"element": [
 				"type": "static_select",

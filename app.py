@@ -158,7 +158,7 @@ async def command(ack, body, respond, client, logger):
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "Preconfigured Backblast Channel"
+            "text": "The Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
@@ -233,14 +233,14 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the AO",
+                    "text": "Select the Backblast Channel",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "The AO",
+                "text": "The Channel",
                 "emoji": True
             }
         },

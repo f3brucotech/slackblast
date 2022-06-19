@@ -245,9 +245,9 @@ async def command(ack, body, respond, client, logger):
             }
         },
         		{
-			"type": "input",
+			"type": "actions",
 			"block_id": "the_wrkout",
-			"element": {
+			"element": [{
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
@@ -334,7 +334,7 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "Warrior Wednesday"
-					},			
+					}			
 					],
 				"action_id": "static_select-action"
 			},
@@ -343,6 +343,7 @@ async def command(ack, body, respond, client, logger):
 				"text": "The Workout",
 				"emoji": True
 			}
+		}],
           },
         {
             "type": "input",
@@ -519,7 +520,7 @@ async def view_submission(ack, body, logger, client):
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
-    the_wrkout = result["the_wrkout"]["static_select-action"]["value"]
+    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -530,6 +531,7 @@ async def view_submission(ack, body, logger, client):
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
     pax_formatted = await get_pax(pax)
+    wrkout_res = await get_wrkout(wrkout)
 
     logger.info(result)
 
@@ -553,7 +555,7 @@ async def view_submission(ack, body, logger, client):
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*Channel*: <#" + the_ao + ">"
-	wrkout_msg = f"*AO*: " + the_wrkout
+	wrkout_msg = f"*AO*: " + wrkout_res
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs

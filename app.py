@@ -233,20 +233,19 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the backblast channel",
+                    "text": "Select the AO",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "The Channel",
+                "text": "The AO",
                 "emoji": True
             }
         },
         		{
-			"type": "input",
-			"block_id": "the_wrkout",	
+			"type": "input",	
 			"element": {
 				"type": "static_select",
 				"placeholder": {

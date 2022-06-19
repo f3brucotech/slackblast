@@ -233,10 +233,111 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the AO",
+                    "text": "Select the backblast channel",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The Channel",
+                "emoji": True
+            }
+        },
+        }
+        {
+            "type": "input",
+            "block_id": "the_wrkout",
+            "element": {
+                "type": "static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
+                "options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "1",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "2",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "3",
+							"emoji": true
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "4",
+							"emoji": true
+						},
+						"value": "value-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "5",
+							"emoji": true
+						},
+						"value": "value-4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "6",
+							"emoji": true
+						},
+						"value": "value-5"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "7",
+							"emoji": true
+						},
+						"value": "value-6"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "8",
+							"emoji": true
+						},
+						"value": "value-7"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "9",
+							"emoji": true
+						},
+						"value": "value-8"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "10",
+							"emoji": true
+						},
+						"value": "value-9"
+					}
+				],
+                "action_id": "static_select-action"
             },
             "label": {
                 "type": "plain_text",
@@ -451,7 +552,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*AO*: <#" + the_ao + ">"
+        ao_msg = f"*Channel*: <#" + the_ao + ">"
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs

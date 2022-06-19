@@ -158,7 +158,7 @@ async def command(ack, body, respond, client, logger):
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "The Backblast Channel"
+            "text": "Preconfigured Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
@@ -233,14 +233,14 @@ async def command(ack, body, respond, client, logger):
                 "type": "channels_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select the Backblast Channel",
+                    "text": "Select the AO",
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "The Channel",
+                "text": "The AO",
                 "emoji": True
             }
         },
@@ -447,11 +447,11 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*Backblast*: "
+        header_msg = f"*Slackblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*Channel*: <#" + the_ao + ">"
+        ao_msg = f"*AO*: <#" + the_ao + ">"
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -473,8 +473,9 @@ async def view_submission(ack, body, logger, client):
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title
+
             date_msg = f"DATE: " + the_date
-            ao_msg = f"Channel: " + (ao_name or '').replace('the', '').title()
+            ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs

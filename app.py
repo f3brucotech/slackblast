@@ -531,7 +531,6 @@ async def view_submission(ack, body, logger, client):
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
     pax_formatted = await get_pax(pax)
-    wrkout_res = await get_wrkout(the_wrkout)
 
     logger.info(result)
 
@@ -555,7 +554,6 @@ async def view_submission(ack, body, logger, client):
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*Channel*: <#" + the_ao + ">"
-	wrkout_msg = f"*AO*: " + wrkout_res
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs

@@ -244,7 +244,6 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-        }
         {
             "type": "input",
             "block_id": "the_wrkout",
@@ -260,7 +259,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "1",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-0"
 					},
@@ -268,7 +267,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "2",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-1"
 					},
@@ -276,7 +275,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "3",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-2"
 					},
@@ -284,7 +283,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "4",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-3"
 					},
@@ -292,7 +291,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "5",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-4"
 					},
@@ -300,7 +299,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "6",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-5"
 					},
@@ -308,7 +307,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "7",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-6"
 					},
@@ -316,7 +315,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "8",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-7"
 					},
@@ -324,7 +323,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "9",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-8"
 					},
@@ -332,7 +331,7 @@ async def command(ack, body, respond, client, logger):
 						"text": {
 							"type": "plain_text",
 							"text": "10",
-							"emoji": true
+							"emoji": True
 						},
 						"value": "value-9"
 					}

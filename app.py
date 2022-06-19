@@ -520,7 +520,7 @@ async def view_submission(ack, body, logger, client):
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
-    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]
+    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -549,7 +549,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*Slackblast*: "
+        header_msg = f"*Backblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date

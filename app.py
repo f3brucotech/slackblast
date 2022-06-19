@@ -247,7 +247,7 @@ async def command(ack, body, respond, client, logger):
         		{
 			"type": "actions",
 			"block_id": "the_wrkout",
-			"element": [{
+			"element": [
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
@@ -343,7 +343,7 @@ async def command(ack, body, respond, client, logger):
 				"text": "The Workout",
 				"emoji": True
 			}
-		}]
+		],
           },
         {
             "type": "input",

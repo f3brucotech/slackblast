@@ -279,9 +279,7 @@ async def command(ack, body, respond, client, logger):
 						},
 						"value": "Frying Pan"
 					}
-					   ],
-			}
-			},
+					],
 				"action_id": "static_select-action"
 			},
 			"label": {

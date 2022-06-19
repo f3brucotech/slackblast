@@ -244,9 +244,9 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-{
+                       {
 			"type": "input",
-			"block_id": "the_wrkout",
+                        block_id": "the_wrkout",
 			"element": {
 				"type": "static_select",
 				"placeholder": {
@@ -337,12 +337,12 @@ async def command(ack, body, respond, client, logger):
 					}			
 					],
 				"action_id": "static_select-action"
+                           }
 			},
 			"label": {
 				"type": "plain_text",
 				"text": "The Workout",
 				"emoji": True
-			}
 				}
           },
         {

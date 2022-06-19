@@ -244,16 +244,16 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-        {
-		"type": "input",
-		"block_id": "the_wrkout",
-		"element": [
-			"type": "static_select",
-			"placeholder": {
-				"type": "plain_text",
-				"text": "Select the AO",
-				"emoji": True
-					},
+{
+			"type": "input",
+			"block_id": "the_wrkout",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select the AO",
+					"emoji": True
+				},
 				"options": [
 					{
 						"text": {
@@ -262,8 +262,80 @@ async def command(ack, body, respond, client, logger):
 							"emoji": True
 						},
 						"value": "The Brunswick Stew"
-					}		
-					  ],
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Friday in LA",
+							"emoji": True
+						},
+						"value": "Friday in LA"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Frying Pan",
+							"emoji": True
+						},
+						"value": "Frying Pan"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Leland Metal Mania",
+							"emoji": True
+						},
+						"value": "Leland Metal Mania"
+					},	
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Lightship Ruck 'n Run",
+							"emoji": True
+						},
+						"value": "Lightship Ruck 'n Run"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Middle Earth",
+							"emoji": True
+						},
+						"value": "Middle Earth"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "The River",
+							"emoji": True
+						},
+						"value": "The River"
+					},	
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Run Brunswick Forest Run (RBFR)",
+							"emoji": True
+						},
+						"value": "Run Brunswick Forest Run (RBFR)"
+					},	
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "South Beach",
+							"emoji": True
+						},
+						"value": "South Beach"
+					},	
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Warrior Wednesday",
+							"emoji": True
+						},
+						"value": "Warrior Wednesday"
+					}			
+					],
 				"action_id": "static_select-action"
 			},
 			"label": {
@@ -271,7 +343,7 @@ async def command(ack, body, respond, client, logger):
 				"text": "The Workout",
 				"emoji": True
 			}
-			 ],
+				}
           },
         {
             "type": "input",

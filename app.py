@@ -261,7 +261,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "The Brunswick Stew",
 							"emoji": True
 						},
-						"value": "value-0"
+						"value": "The Brunswick Stew"
 					},
 					{
 						"text": {
@@ -269,7 +269,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "Friday in LA",
 							"emoji": True
 						},
-						"value": "value-1"
+						"value": "Friday in LA"
 					},
 					{
 						"text": {
@@ -277,15 +277,15 @@ async def command(ack, body, respond, client, logger):
 							"text": "Frying Pan",
 							"emoji": True
 						},
-						"value": "value-2"
+						"value": "Frying Pan"
 					},
 						{
 						"text": {
 							"type": "plain_text",
-							"text": "Leland Metal Mania Monday",
+							"text": "Metal Mania Monday",
 							"emoji": True
 						},
-						"value": "value-3"
+						"value": "Metal Mania Monday"
 					},
 					
 						{
@@ -294,7 +294,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "Lightship Ruck n Run",
 							"emoji": True
 						},
-						"value": "value-4"
+						"value": "Lightship Ruck n Run"
 					},
 						{
 						"text": {
@@ -302,7 +302,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "Middle Earth",
 							"emoji": True
 						},
-						"value": "value-5"
+						"value": "Middle Earth"
 					},
 						{
 						"text": {
@@ -310,7 +310,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "The River",
 							"emoji": True
 						},
-						"value": "value-6"
+						"value": "The River"
 					},
 						{
 						"text": {
@@ -318,7 +318,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "Run Brunswick Forest Run",
 							"emoji": True
 						},
-						"value": "value-7"
+						"value": "Run Brunswick Forest Run"
 					},
 						{
 						"text": {
@@ -326,7 +326,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "South Beach",
 							"emoji": True
 						},
-						"value": "value-8"
+						"value": "South Beach"
 					},
 						{
 						"text": {
@@ -334,7 +334,7 @@ async def command(ack, body, respond, client, logger):
 							"text": "Warrior Wednesday",
 							"emoji": True
 						},
-						"value": "value-9"
+						"value": "Warrior Wednesday"
 					}
 				],
 				"action_id": "static_select-action"

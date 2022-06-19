@@ -531,7 +531,7 @@ async def view_submission(ack, body, logger, client):
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
     pax_formatted = await get_pax(pax)
-    wrkout_res = await get_wrkout(wrkout)
+    wrkout_res = await get_wrkout(the_wrkout)
 
     logger.info(result)
 

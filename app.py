@@ -226,24 +226,6 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-                {
-            "type": "input",
-            "block_id": "the_ao",
-            "element": {
-                "type": "channels_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Select the AO",
-                    "emoji": True
-                },
-                "action_id": "channels_select-action"
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "The AO",
-                "emoji": True
-            }
-        },
           {
     "type": "section",
     "block_id": "the_wrkout",
@@ -533,7 +515,6 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
     the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
@@ -553,9 +534,8 @@ async def view_submission(ack, body, logger, client):
         chan = the_ao
         
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination, the_ao))
+        chan, destination,))
 
-    ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
 

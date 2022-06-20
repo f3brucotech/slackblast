@@ -576,7 +576,8 @@ async def view_submission(ack, body, logger, client):
             subject = title
 
             date_msg = f"DATE: " + the_date
-            ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
+            ao_msg = f"CHannel: " + (ao_name or '').replace('the', '').title()
+            wrkout_msg = f"AO: " + q_name
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
@@ -584,7 +585,7 @@ async def view_submission(ack, body, logger, client):
             moleskine_msg = moleskine
 
             body_email = make_body(
-                date_msg, ao_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
+                date_msg, ao_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
 
             logger.info('\nEmail Sent! \n{}'.format(body_email))
@@ -595,9 +596,10 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, ao, q, pax, fngs, count, moleskine):
+def make_body(date, ao, wrkout, q, pax, fngs, count, moleskine):
     return date + \
         "\n" + ao + \
+        "\n" + wrkout + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

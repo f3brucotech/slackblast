@@ -156,10 +156,6 @@ async def command(ack, body, respond, client, logger):
     }
 
     channel_options = []
-
-    # figure out which channel should be initial and then remaining options
-    if config('CHANNEL', default=current_channel_id) == channel_configured_ao_option:
-        # Default to using the .env CHANNEL value which at this point must be a channel id
         initial_channel_option = channel_configured_ao_option
         channel_options.append(channel_configured_ao_option)
         channel_options.append(channel_me_option)

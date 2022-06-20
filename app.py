@@ -226,6 +226,24 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
+                {
+            "type": "input",
+            "block_id": "the_ao",
+            "element": {
+                "type": "channels_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
+                "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The AO",
+                "emoji": True
+            }
+        },
           {
     "type": "section",
     "block_id": "the_wrkout",
@@ -456,14 +474,14 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Your backblast will post to:"
+                "text": "Your backblast will post to"
             },
             "accessory": {
                 "action_id": "destination-action",
                 "type": "static_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "The backblast channel:"
+                    "text": "The backblast channel"
                 },
                 "initial_option": initial_channel_option,
                 "options": channel_options

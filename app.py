@@ -592,9 +592,9 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, wrkout, q, pax, fngs, count, moleskine):
+def make_body(date, the_wrkout, q, pax, fngs, count, moleskine):
     return date + \
-        "\n" + wrkout + \
+        "\n" + the_wrkout + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

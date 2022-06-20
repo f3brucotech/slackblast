@@ -227,13 +227,16 @@ async def command(ack, body, respond, client, logger):
             }
         },
         {
-      "action_id": "static_select-action",
+      "type": "actions",
       "block_id": "the_wrkout",
-      "type": "static_select",
-      "placeholder": {
+      "element": {
+            "type": "static_select",
+            "action_id": "static_select-action",
+            "placeholder": {
         "type": "plain_text",
         "text": "Select the AO",
         "emoji": True
+            }
       },
       "options": [
         {

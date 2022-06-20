@@ -244,6 +244,121 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
+                  {
+    "type": "section",
+    "block_id": "the_wrkout",
+    "text": {
+      "type": "mrkdwn",
+      "text": "The AO"
+    },
+    "accessory": {
+      "action_id": "static_select-action",
+      "type": "static_select",
+      "placeholder": {
+        "type": "plain_text",
+        "text": "Select the AO",
+        "emoji": True
+      },
+      "options": [
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "The Brunswick Stew",
+            "emoji": True
+          },
+          "value": "The Brunswick Stew"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Frying Pan",
+            "emoji": True
+          },
+          "value": "Frying Pan"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Friday in LA",
+            "emoji": True
+          },
+          "value": "Friday in LA"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Leland Metal Mania",
+            "emoji": True
+          },
+          "value": "Leland Metal Mania"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Lightship Ruck 'n' Run",
+            "emoji": True
+          },
+          "value": "Lightship Ruck 'n' Run"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Middle Earth",
+            "emoji": True
+          },
+          "value": "Middle Earth"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "The River",
+            "emoji": True
+          },
+          "value": "The River"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Run Brunswick Forest Run (RBFR)",
+            "emoji": True
+          },
+          "value": "Run Brunswick Forest Run (RBFR)"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "South Beach",
+            "emoji": True
+          },
+          "value": "South Beach"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Warrior Wednesday",
+            "emoji": True
+          },
+          "value": "Warrior Wednesday"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Pop-up AO",
+            "emoji": True
+          },
+          "value": "Pop-Up AO"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Other Event",
+            "emoji": True
+          },
+          "value": "Other Event"
+        }
+      ]
+    }
+  },
         {
             "type": "input",
             "block_id": "date",

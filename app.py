@@ -158,7 +158,7 @@ async def command(ack, body, respond, client, logger):
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "The Backblast Channel"
+            "text": "Preconfigured Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
@@ -176,7 +176,7 @@ async def command(ack, body, respond, client, logger):
     }
 
     channel_options = []
-    
+
     # figure out which channel should be default/initial and then remaining operations
     if channel_id:
         initial_channel_option = channel_user_specified_channel_option
@@ -226,121 +226,24 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-          {
-    "type": "section",
-    "block_id": "the_wrkout",
-    "text": {
-      "type": "mrkdwn",
-      "text": "The AO"
-    },
-    "accessory": {
-      "action_id": "static_select-action",
-      "type": "static_select",
-      "placeholder": {
-        "type": "plain_text",
-        "text": "Select the AO",
-        "emoji": True
-      },
-      "options": [
         {
-          "text": {
-            "type": "plain_text",
-            "text": "The Brunswick Stew",
-            "emoji": True
-          },
-          "value": "The Brunswick Stew"
+            "type": "input",
+            "block_id": "the_ao",
+            "element": {
+                "type": "channels_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
+                "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The AO",
+                "emoji": True
+            }
         },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Frying Pan",
-            "emoji": True
-          },
-          "value": "Frying Pan"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Friday in LA",
-            "emoji": True
-          },
-          "value": "Friday in LA"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Leland Metal Mania",
-            "emoji": True
-          },
-          "value": "Leland Metal Mania"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Lightship Ruck 'n' Run",
-            "emoji": True
-          },
-          "value": "Lightship Ruck 'n' Run"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Middle Earth",
-            "emoji": True
-          },
-          "value": "Middle Earth"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "The River",
-            "emoji": True
-          },
-          "value": "The River"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Run Brunswick Forest Run (RBFR)",
-            "emoji": True
-          },
-          "value": "Run Brunswick Forest Run (RBFR)"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "South Beach",
-            "emoji": True
-          },
-          "value": "South Beach"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Warrior Wednesday",
-            "emoji": True
-          },
-          "value": "Warrior Wednesday"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Pop-up AO",
-            "emoji": True
-          },
-          "value": "Pop-Up AO"
-        },
-        {
-          "text": {
-            "type": "plain_text",
-            "text": "Other Event",
-            "emoji": True
-          },
-          "value": "Other Event"
-        }
-      ]
-    }
-  },
         {
             "type": "input",
             "block_id": "date",
@@ -456,14 +359,14 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Your backblast will post to"
+                "text": "Choose where to post this"
             },
             "accessory": {
                 "action_id": "destination-action",
                 "type": "static_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "The backblast channel"
+                    "text": "Choose where"
                 },
                 "initial_option": initial_channel_option,
                 "options": channel_options
@@ -501,7 +404,7 @@ async def command(ack, body, respond, client, logger):
             },
             "submit": {
                 "type": "plain_text",
-                "text": "Send Backblast!"
+                "text": "Submit"
             },
             "blocks": blocks
         },
@@ -515,7 +418,7 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
+    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -532,9 +435,9 @@ async def view_submission(ack, body, logger, client):
     chan = destination
     if chan == 'THE_AO':
         chan = the_ao
-        
+
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination,))
+        chan, destination, the_ao))
 
     ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
@@ -548,7 +451,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        wrkout_msg = f"*AO*: " + the_wrkout
+        ao_msg = f"*AO*: <#" + the_ao + ">"
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -557,7 +460,7 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
+            body = make_body(date_msg, ao_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
@@ -572,7 +475,7 @@ async def view_submission(ack, body, logger, client):
             subject = title
 
             date_msg = f"DATE: " + the_date
-            wrkout_msg = f"AO: " + q_name
+            ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
@@ -580,7 +483,7 @@ async def view_submission(ack, body, logger, client):
             moleskine_msg = moleskine
 
             body_email = make_body(
-                date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
+                date_msg, ao_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
 
             logger.info('\nEmail Sent! \n{}'.format(body_email))
@@ -591,9 +494,9 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, wrkout, q, pax, fngs, count, moleskine):
+def make_body(date, ao, q, pax, fngs, count, moleskine):
     return date + \
-        "\n" + wrkout + \
+        "\n" + ao + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

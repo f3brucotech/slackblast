@@ -338,6 +338,7 @@ async def command(ack, body, respond, client, logger):
           "value": "Other Event"
         }
       ]
+    }
   },
         {
             "type": "input",

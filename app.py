@@ -244,6 +244,45 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
+          {
+    "type": "section",
+    "block_id": "the_wrkout",
+    "text": {
+      "type": "mrkdwn",
+      "text": "The AO"
+    },
+    "accessory": {
+      "action_id": "static_select-action",
+      "type": "static_select",
+      "placeholder": {
+        "type": "plain_text",
+        "text": "Select the AO"
+      },
+      "options": [
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "The Brunswick Stew"
+          },
+          "value": "The Brunswick Stew"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Frying Pan"
+          },
+          "value": "Frying Pan"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Friday in LA"
+          },
+          "value": "Friday in LA"
+        }
+      ]
+    }
+  }
         {
             "type": "input",
             "block_id": "date",

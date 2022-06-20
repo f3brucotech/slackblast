@@ -188,10 +188,6 @@ async def command(ack, body, respond, client, logger):
         initial_channel_option = channel_me_option
         channel_options.append(channel_me_option)
         channel_options.append(current_channel_option)
-    elif config('CHANNEL', default=current_channel_id) == 'THE_AO':
-        initial_channel_option = channel_the_ao_option
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
     elif config('CHANNEL', default=current_channel_id) == current_channel_id:
         # if there is no .env CHANNEL value, use default of current channel
         initial_channel_option = current_channel_option
@@ -316,6 +312,22 @@ async def command(ack, body, respond, client, logger):
             "emoji": True
           },
           "value": "Warrior Wednesday"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Pop-up AO",
+            "emoji": True
+          },
+          "value": "Pop-Up AO"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Other Event",
+            "emoji": True
+          },
+          "value": "Other Event"
         }
       ]
     }
@@ -480,7 +492,7 @@ async def command(ack, body, respond, client, logger):
             },
             "submit": {
                 "type": "plain_text",
-                "text": "Submit"
+                "text": "Send that Backblast!"
             },
             "blocks": blocks
         },

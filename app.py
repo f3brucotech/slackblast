@@ -227,14 +227,8 @@ async def command(ack, body, respond, client, logger):
             }
         },
         {
-    "type": "section",
-    "block_id": "the_wrkout",
-    "text": {
-      "type": "plain_text",
-      "text": "The AO"
-    },
-    "accessory": {
       "action_id": "static_select-action",
+      "block_id": "the_wrkout",
       "type": "static_select",
       "placeholder": {
         "type": "plain_text",
@@ -339,7 +333,6 @@ async def command(ack, body, respond, client, logger):
           "value": "Other Event"
         }
       ]
-    }
   },
         {
             "type": "input",

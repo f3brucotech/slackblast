@@ -480,7 +480,7 @@ async def command(ack, body, respond, client, logger):
             },
             "submit": {
                 "type": "plain_text",
-                "text": "Send Backblast"
+                "text": "Submit"
             },
             "blocks": blocks
         },
@@ -494,8 +494,7 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
-    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
-    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
+    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -508,8 +507,6 @@ async def view_submission(ack, body, logger, client):
     pax_formatted = await get_pax(pax)
 
     logger.info(result)
-
-    chan = destination
 
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
@@ -540,7 +537,7 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
             slack_bolt_err))
         # Try again and bomb out without attempting to send email
-        await client.chat_postMessage(channel=chan, text='There was an error with your submission: {}'.format(slack_bolt_err))
+        await client.chat_postMessage(channel=(C03K2N3TXLN), text='There was an error with your submission: {}'.format(slack_bolt_err))
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title

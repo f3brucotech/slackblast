@@ -506,8 +506,6 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
     
-    chan = initial_channel_option
-    
     logger.info('Channel to post to will be {}'.format(
         chan))
 
@@ -534,13 +532,13 @@ async def view_submission(ack, body, logger, client):
             body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
-            await client.chat_postMessage(channel=chan, text=msg)
+            await client.chat_postMessage(channel='C03K2N3TXLN', text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))
     except Exception as slack_bolt_err:
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
             slack_bolt_err))
         # Try again and bomb out without attempting to send email
-        await client.chat_postMessage(channel=chan, text='There was an error with your submission: {}'.format(slack_bolt_err))
+        await client.chat_postMessage(channel='C03K2N3TXLN', text='There was an error with your submission: {}'.format(slack_bolt_err))
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title

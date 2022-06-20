@@ -515,6 +515,7 @@ async def view_submission(ack, body, logger, client):
     result = body["view"]["state"]["values"]
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
+    the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
     the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]

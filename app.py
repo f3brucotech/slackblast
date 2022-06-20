@@ -506,7 +506,7 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
     
-    chan = C03K2N3TXLN
+    chan = initial_channel_option
     
     logger.info('Channel to post to will be {}'.format(
         chan))

@@ -158,7 +158,7 @@ async def command(ack, body, respond, client, logger):
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "Preconfigured Backblast Channel"
+            "text": "The Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
@@ -227,24 +227,6 @@ async def command(ack, body, respond, client, logger):
             }
         },
         {
-            "type": "input",
-            "block_id": "the_ao",
-            "element": {
-                "type": "channels_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Select the AO",
-                    "emoji": True
-                },
-                "action_id": "channels_select-action"
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "The AO",
-                "emoji": True
-            }
-        },
-                  {
     "type": "section",
     "block_id": "the_wrkout",
     "text": {
@@ -474,7 +456,7 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Choose where to post this"
+                "text": "Choose where to post it"
             },
             "accessory": {
                 "action_id": "destination-action",
@@ -519,7 +501,7 @@ async def command(ack, body, respond, client, logger):
             },
             "submit": {
                 "type": "plain_text",
-                "text": "Submit"
+                "text": "Send Backblast"
             },
             "blocks": blocks
         },
@@ -534,6 +516,7 @@ async def view_submission(ack, body, logger, client):
     title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
+    the_wrkout = result["the_wrkout"]["static_select-action"]["selected_option"]["value"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
@@ -566,7 +549,7 @@ async def view_submission(ack, body, logger, client):
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
-        ao_msg = f"*AO*: <#" + the_ao + ">"
+        wrkout_msg = f"*AO*: " + the_wrkout
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
@@ -575,7 +558,7 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, ao_msg, q_msg, pax_msg,
+            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
@@ -590,7 +573,7 @@ async def view_submission(ack, body, logger, client):
             subject = title
 
             date_msg = f"DATE: " + the_date
-            ao_msg = f"AO: " + (ao_name or '').replace('the', '').title()
+            wrkout_msg = f"AO: " + the_wrkout
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
@@ -598,7 +581,7 @@ async def view_submission(ack, body, logger, client):
             moleskine_msg = moleskine
 
             body_email = make_body(
-                date_msg, ao_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
+                date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
 
             logger.info('\nEmail Sent! \n{}'.format(body_email))
@@ -609,9 +592,9 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, ao, q, pax, fngs, count, moleskine):
+def make_body(date, wrkout, q, pax, fngs, count, moleskine):
     return date + \
-        "\n" + ao + \
+        "\n" + wrkout + \
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \

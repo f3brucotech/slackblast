@@ -226,19 +226,21 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-        {
-      "type": "actions",
-      "block_id": "the_wrkout",
-      "element": {
-            "type": "static_select",
-            "action_id": "static_select-action",
-            "placeholder": {
+  {
+    "type": "section",
+    "block_id": "the_wrkout",
+    "text": {
+      "type": "mrkdwn",
+      "text": "The AO"
+    },
+    "accessory": {
+      "action_id": "static_select-action",
+      "type": "static_select",
+      "placeholder": {
         "type": "plain_text",
-        "text": "Select the AO",
-        "emoji": True
-            }
+        "text": "Select the AO"
       },
-      "options": [
+        "options": [
         {
           "text": {
             "type": "plain_text",
@@ -496,7 +498,6 @@ async def view_submission(ack, body, logger, client):
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
-    destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
 

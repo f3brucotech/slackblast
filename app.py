@@ -256,33 +256,37 @@ async def command(ack, body, respond, client, logger):
       "type": "static_select",
       "placeholder": {
         "type": "plain_text",
-        "text": "Select the AO"
+        "text": "Select the AO",
+        "emoji": True
       },
       "options": [
         {
           "text": {
             "type": "plain_text",
-            "text": "The Brunswick Stew"
+            "text": "The Brunswick Stew",
+            "emoji": True
           },
           "value": "The Brunswick Stew"
         },
         {
           "text": {
             "type": "plain_text",
-            "text": "Frying Pan"
+            "text": "Frying Pan",
+            "emoji": True
           },
           "value": "Frying Pan"
         },
         {
           "text": {
             "type": "plain_text",
-            "text": "Friday in LA"
+            "text": "Friday in LA",
+            "emoji": True
           },
           "value": "Friday in LA"
         }
       ]
     }
-  }
+  },
         {
             "type": "input",
             "block_id": "date",

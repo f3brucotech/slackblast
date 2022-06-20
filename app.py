@@ -530,14 +530,11 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
 
-    chan = destination
-    if chan == 'THE_AO':
-        chan = the_ao
+    chan = channel_configured_ao_option
 
-    logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination, the_ao))
+    logger.info('Channel to post to will be {} because the selected destination value was {}'.format(
+        chan, destination,))
 
-    ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
 

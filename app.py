@@ -145,59 +145,23 @@ async def command(ack, body, respond, client, logger):
             "text": "Me"
         },
         "value": user_id
-    }
-    # In .env, CHANNEL=THE_AO
-    channel_the_ao_option = {
-        "text": {
-            "type": "plain_text",
-            "text": "The AO Channel"
-        },
-        "value": "THE_AO"
-    }
+    },
     # In .env, CHANNEL=<channel-id>
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "Preconfigured Backblast Channel"
+            "text": "The Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
-    }
-    # User may have typed /slackblast #<channel-name> AND
-    # slackblast slashcommand is checked to escape channels.
-    #   Escape channels, users, and links sent to your app
-    #   Escaped: <#C1234|general>
-    channel_id, channel_name = get_channel_id_and_name(body, logger)
-    channel_user_specified_channel_option = {
-        "text": {
-            "type": "plain_text",
-            "text": '# ' + channel_name
-        },
-        "value": channel_id
     }
 
     channel_options = []
 
     # figure out which channel should be default/initial and then remaining operations
     if channel_id:
-        initial_channel_option = channel_user_specified_channel_option
-        channel_options.append(channel_user_specified_channel_option)
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-        channel_options.append(channel_configured_ao_option)
-    elif config('CHANNEL', default=current_channel_id) == 'USER':
-        initial_channel_option = channel_me_option
-        channel_options.append(channel_me_option)
-        channel_options.append(current_channel_option)
-    elif config('CHANNEL', default=current_channel_id) == current_channel_id:
-        # if there is no .env CHANNEL value, use default of current channel
-        initial_channel_option = current_channel_option
-        channel_options.append(current_channel_option)
-        channel_options.append(channel_me_option)
-    else:
         # Default to using the .env CHANNEL value which at this point must be a channel id
         initial_channel_option = channel_configured_ao_option
         channel_options.append(channel_configured_ao_option)
-        channel_options.append(current_channel_option)
         channel_options.append(channel_me_option)
 
     blocks = [
@@ -447,14 +411,14 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Choose where to post this"
+                "text": "Your backblast will post to:"
             },
             "accessory": {
                 "action_id": "destination-action",
                 "type": "static_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Choose where"
+                    "text": "The backblast channel:"
                 },
                 "initial_option": initial_channel_option,
                 "options": channel_options
@@ -521,13 +485,10 @@ async def view_submission(ack, body, logger, client):
     logger.info(result)
 
     chan = destination
-    if chan == 'THE_AO':
-        chan = the_ao
 
     logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination, the_ao))
+        chan, destination,))
 
-    ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
 

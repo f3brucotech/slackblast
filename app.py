@@ -447,27 +447,6 @@ async def command(ack, body, respond, client, logger):
                 "text": "The Moleskine",
                 "emoji": True
             }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "section",
-            "block_id": "destination",
-            "text": {
-                "type": "plain_text",
-                "text": "Choose where to post it"
-            },
-            "accessory": {
-                "action_id": "destination-action",
-                "type": "static_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Choose where"
-                },
-                "initial_option": initial_channel_option,
-                "options": channel_options
-            }
         }
     ]
 

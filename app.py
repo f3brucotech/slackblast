@@ -230,7 +230,7 @@ async def command(ack, body, respond, client, logger):
     "type": "section",
     "block_id": "the_wrkout",
     "text": {
-      "type": "mrkdwn",
+      "type": "plain_text",
       "text": "The AO"
     },
     "accessory": {

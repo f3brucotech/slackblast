@@ -158,7 +158,7 @@ async def command(ack, body, respond, client, logger):
     channel_configured_ao_option = {
         "text": {
             "type": "plain_text",
-            "text": "Preconfigured Backblast Channel"
+            "text": "The Backblast Channel"
         },
         "value": config('CHANNEL', default=current_channel_id)
     }
@@ -501,7 +501,7 @@ async def command(ack, body, respond, client, logger):
             },
             "submit": {
                 "type": "plain_text",
-                "text": "Send that Backblast!"
+                "text": "Send Backblast!"
             },
             "blocks": blocks
         },

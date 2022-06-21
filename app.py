@@ -500,7 +500,7 @@ async def view_submission(ack, body, logger, client):
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
-    destination = C03K2N3TXLN
+    destination = "value": config('CHANNEL', default=current_channel_id)
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]

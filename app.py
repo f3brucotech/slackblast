@@ -500,6 +500,7 @@ async def view_submission(ack, body, logger, client):
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
+    destination = C03K2N3TXLN
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
@@ -507,6 +508,8 @@ async def view_submission(ack, body, logger, client):
     pax_formatted = await get_pax(pax)
 
     logger.info(result)
+
+    chan = destination
     
     logger.info('Channel to post to will be {}'.format(
         chan))
@@ -534,13 +537,13 @@ async def view_submission(ack, body, logger, client):
             body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
-            await client.chat_postMessage(channel=C03K2N3TXLN, text=msg)
+            await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))
     except Exception as slack_bolt_err:
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
             slack_bolt_err))
         # Try again and bomb out without attempting to send email
-        await client.chat_postMessage(channel=C03K2N3TXLN, text='There was an error with your submission: {}'.format(slack_bolt_err))
+        await client.chat_postMessage(channel=chan, text='There was an error with your submission: {}'.format(slack_bolt_err))
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title

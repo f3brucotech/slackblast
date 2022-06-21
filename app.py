@@ -446,22 +446,6 @@ async def command(ack, body, respond, client, logger):
                 "text": "The Moleskine",
                 "emoji": True
             },
-            {
-            "type": "section",
-            "block_id": "destination",
-            "text": {
-                "type": "plain_text",
-                "text": "Your backblast will be posted to"
-            },
-            "accessory": {
-                "action_id": "destination-action",
-                "type": "static_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "The Bruco backblast channel"
-                },
-                "initial_option": initial_channel_option,
-                "options": channel_options
             }
         }
     ]
@@ -516,15 +500,12 @@ async def view_submission(ack, body, logger, client):
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
-    destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
     pax_formatted = await get_pax(pax)
 
     logger.info(result)
-    
-    chan == destination
     
     logger.info('Channel to post to will be {}'.format(
         chan))

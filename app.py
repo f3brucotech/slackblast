@@ -445,7 +445,6 @@ async def command(ack, body, respond, client, logger):
                 "type": "plain_text",
                 "text": "The Moleskine",
                 "emoji": True
-            },
             }
         }
     ]

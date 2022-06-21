@@ -226,20 +226,16 @@ async def command(ack, body, respond, client, logger):
                 "text": "Title"
             }
         },
-  {
-    "type": "section",
-    "block_id": "the_wrkout",
-    "text": {
-      "type": "mrkdwn",
-      "text": "The AO"
-    },
-    "accessory": {
-      "action_id": "static_select-action",
-      "type": "static_select",
-      "placeholder": {
-        "type": "plain_text",
-        "text": "Select the AO"
-      },
+        {
+	        "type": "input",
+            "block_id": "the_wrkout",
+	        "element": {
+		        "type": "static_select",
+		        "placeholder": {
+			        "type": "plain_text",
+			        "text": "Select the AO",
+			        "emoji": true
+		     },
         "options": [
         {
           "text": {
@@ -337,9 +333,15 @@ async def command(ack, body, respond, client, logger):
           },
           "value": "Other Event"
         }
-      ]
-    }
-  },
+      ],
+      "action_id": "static_select-action"
+	},
+    "label": {
+		"type": "plain_text",
+		"text": "The AO",
+		"emoji": true
+	}
+ },
         {
             "type": "input",
             "block_id": "date",

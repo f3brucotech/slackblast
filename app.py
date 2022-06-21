@@ -451,7 +451,7 @@ async def command(ack, body, respond, client, logger):
             "block_id": "destination",
             "text": {
                 "type": "plain_text",
-                "text": "Your backblast will be posted to:"
+                "text": "Your backblast will be posted to"
             },
             "accessory": {
                 "action_id": "destination-action",
@@ -524,7 +524,7 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
     
-    chan = destination
+    chan == destination
     
     logger.info('Channel to post to will be {}'.format(
         chan))

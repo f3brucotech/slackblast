@@ -339,7 +339,7 @@ async def command(ack, body, respond, client, logger):
     "label": {
 		"type": "plain_text",
 		"text": "The AO",
-		"emoji": true
+		"emoji": True
 	}
  },
         {

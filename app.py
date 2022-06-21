@@ -498,6 +498,7 @@ async def view_submission(ack, body, logger, client):
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
+    destination = result["channel_configured_ao_option"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
@@ -505,6 +506,10 @@ async def view_submission(ack, body, logger, client):
     pax_formatted = await get_pax(pax)
 
     logger.info(result)
+    
+    chan = destination
+    if chan == 'THE_AO':
+        chan = the_ao
     
     logger.info('Channel to post to will be {}'.format(
         chan))

@@ -234,7 +234,7 @@ async def command(ack, body, respond, client, logger):
 		        "placeholder": {
 			        "type": "plain_text",
 			        "text": "Select the AO",
-			        "emoji": true
+			        "emoji": True
 		     },
         "options": [
         {

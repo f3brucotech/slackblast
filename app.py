@@ -414,7 +414,7 @@ async def command(ack, body, respond, client, logger):
                 "text": "FNGs"
             }
 	},
-	        {
+	{
             "type": "input",
             "block_id": "otherpax",
             "element": {
@@ -588,7 +588,7 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with sendmail: {}'.format(sendmail_err))
 
 
-def make_body(date, the_wrkout, q, pax, fngs, count, moleskine):
+def make_body(date, the_wrkout, q, pax, fngs, otherpax, count, moleskine):
     return date + \
         "\n" + the_wrkout + \
         "\n" + q + \

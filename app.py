@@ -572,7 +572,7 @@ async def view_submission(ack, body, logger, client):
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
-	    otherpax_msg = "Other Pax: " + otherpax
+	    otherpax_msg = f"Other Pax: " + otherpax
             count_msg = f"COUNT: " + count
             moleskine_msg = moleskine
 

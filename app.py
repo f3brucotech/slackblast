@@ -521,7 +521,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*BrucoBackblast*: "
+        header_msg = f"*Slackblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date

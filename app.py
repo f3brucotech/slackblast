@@ -397,7 +397,7 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-	{
+        {
             "type": "input",
             "block_id": "fngs",
             "element": {
@@ -411,10 +411,10 @@ async def command(ack, body, respond, client, logger):
             },
             "label": {
                 "type": "plain_text",
-                "text": "List any FNGs"
+                "text": "List untaggable names separated by commas (FNGs, Willy Lomans, etc.)"
             }
         },
-	{
+        {
             "type": "input",
             "block_id": "count",
             "element": {

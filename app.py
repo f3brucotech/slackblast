@@ -412,7 +412,8 @@ async def command(ack, body, respond, client, logger):
             "label": {
                 "type": "plain_text",
                 "text": "FNGs"
-            },
+            }
+	},
 	        {
             "type": "input",
             "block_id": "otherpax",
@@ -422,7 +423,7 @@ async def command(ack, body, respond, client, logger):
                 "initial_value": "None",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "List any other PAX (downrange, not on Slack, etc)"
+                    "text": "List any other PAX (downrange, not on Slack, etc.)"
                 }
             },
             "label": {

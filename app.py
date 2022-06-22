@@ -539,7 +539,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*Bruco Backblast*: "
+        header_msg = f"*BrucoBackblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
@@ -547,7 +547,7 @@ async def view_submission(ack, body, logger, client):
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
-	otherpax_msg = f"*Other Pax*: " + otherpax
+	otherpax_msg = f"*OtherPax*: " + otherpax
         count_msg = f"*COUNT*: " + count
         moleskine_msg = moleskine
 
@@ -572,7 +572,7 @@ async def view_submission(ack, body, logger, client):
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
-	    otherpax_msg = f"Other Pax: " + otherpax
+	    otherpax_msg = f"OtherPax: " + otherpax
             count_msg = f"COUNT: " + count
             moleskine_msg = moleskine
 

@@ -412,7 +412,7 @@ async def command(ack, body, respond, client, logger):
             "label": {
                 "type": "plain_text",
                 "text": "FNGs"
-            }
+            },
 	        {
             "type": "input",
             "block_id": "otherpax",

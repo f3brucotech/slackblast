@@ -397,7 +397,7 @@ async def command(ack, body, respond, client, logger):
                 "emoji": True
             }
         },
-        {
+	{
             "type": "input",
             "block_id": "fngs",
             "element": {
@@ -406,14 +406,14 @@ async def command(ack, body, respond, client, logger):
                 "initial_value": "None",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "List any FNGs"
+                    "text": "FNGs"
                 }
             },
             "label": {
                 "type": "plain_text",
-                "text": "FNGs"
+                "text": "List any FNGs"
             }
-	},
+        },
 	{
             "type": "input",
             "block_id": "otherpax",
@@ -423,13 +423,13 @@ async def command(ack, body, respond, client, logger):
                 "initial_value": "None",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "List any other PAX (downrange, not on Slack, etc.)"
+                    "text": "Other Pax"
                 }
             },
             "label": {
                 "type": "plain_text",
-                "text": "Other Pax"
-            }	
+                "text": "List any other Pax"
+            }
         },
         {
             "type": "input",

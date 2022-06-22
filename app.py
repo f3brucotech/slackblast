@@ -406,13 +406,29 @@ async def command(ack, body, respond, client, logger):
                 "initial_value": "None",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "FNGs"
+                    "text": "List any FNGs"
                 }
             },
             "label": {
                 "type": "plain_text",
-                "text": "List untaggable names separated by commas (FNGs, Willy Lomans, etc.)"
+                "text": "FNGs"
             }
+	        {
+            "type": "input",
+            "block_id": "otherpax",
+            "element": {
+                "type": "plain_text_input",
+                "action_id": "otherpax-action",
+                "initial_value": "None",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "List any other PAX (downrange, not on Slack, etc)"
+                }
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "Other Pax"
+            }	
         },
         {
             "type": "input",
@@ -499,6 +515,7 @@ async def view_submission(ack, body, logger, client):
     the_q = result["the_q"]["users_select-action"]["selected_user"]
     pax = result["the_pax"]["multi_users_select-action"]["selected_users"]
     fngs = result["fngs"]["fng-action"]["value"]
+    otherpax = result["otherpax"]["otherpax-action"]["value"]
     count = result["count"]["count-action"]["value"]
     destination = config('CHANNEL')
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
@@ -521,7 +538,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*Slackblast*: "
+        header_msg = f"*Bruco Backblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
@@ -529,13 +546,14 @@ async def view_submission(ack, body, logger, client):
         q_msg = f"*Q*: <@" + the_q + ">"
         pax_msg = f"*PAX*: " + pax_formatted
         fngs_msg = f"*FNGs*: " + fngs
+	otherpax_msg = f"*Other Pax*: " + otherpax
         count_msg = f"*COUNT*: " + count
         moleskine_msg = moleskine
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
             body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
-                             fngs_msg, count_msg, moleskine_msg)
+                             fngs_msg, otherpax_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))
@@ -553,11 +571,12 @@ async def view_submission(ack, body, logger, client):
             q_msg = f"Q: " + q_name
             pax_msg = f"PAX: " + pax_names
             fngs_msg = f"FNGs: " + fngs
+	    otherpax_msg = "Other Pax: " + otherpax
             count_msg = f"COUNT: " + count
             moleskine_msg = moleskine
 
             body_email = make_body(
-                date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, count_msg, moleskine_msg)
+                date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, otherpax_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
 
             logger.info('\nEmail Sent! \n{}'.format(body_email))
@@ -574,6 +593,7 @@ def make_body(date, the_wrkout, q, pax, fngs, count, moleskine):
         "\n" + q + \
         "\n" + pax + \
         "\n" + fngs + \
+	"\n" + otherpax + \	
         "\n" + count + \
         "\n" + moleskine
 

@@ -414,7 +414,7 @@ async def command(ack, body, respond, client, logger):
                 "text": "List any FNGs"
             }
         },
-	{
+        {
             "type": "input",
             "block_id": "otherpax",
             "element": {
@@ -428,9 +428,9 @@ async def command(ack, body, respond, client, logger):
             },
             "label": {
                 "type": "plain_text",
-                "text": "List any other PAX"
+                "text": "List any other PAX (down range, not on Slack, etc.)"
             }
-        },
+        },	    
         {
             "type": "input",
             "block_id": "count",
@@ -539,7 +539,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*BrucoBackblast*: "
+        header_msg = f"*BruCoBackblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
@@ -553,8 +553,7 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
-                             fngs_msg, otherpax_msg, count_msg, moleskine_msg)
+            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, otherpax_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))

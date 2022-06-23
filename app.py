@@ -518,8 +518,8 @@ async def view_submission(ack, body, logger, client):
     fngs = result["fngs"]["fng-action"]["value"]
     otherpax = result["otherpax"]["otherpax-action"]["value"]
     count = result["count"]["count-action"]["value"]
-    destination = config('CHANNEL')
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
+    destination = config('CHANNEL')
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
 
@@ -528,9 +528,8 @@ async def view_submission(ack, body, logger, client):
     logger.info(result)
 
     chan = destination
-    
-    logger.info('Channel to post to will be {}'.format(
-        chan))
+
+    logger.info('Channel to post to will be {} because the selected destination value was {}'.format(chan, destination))
 
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
     pax_names = ', '.join(await get_user_names(pax, logger, client) or [''])
@@ -539,7 +538,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        header_msg = f"*BruCoBackblast*: "
+        header_msg = f"*BrucoBackblast*: "
         title_msg = f"*" + title + "*"
 
         date_msg = f"*DATE*: " + the_date
@@ -553,7 +552,8 @@ async def view_submission(ack, body, logger, client):
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
-            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, otherpax_msg, count_msg, moleskine_msg)
+            body = make_body(date_msg, wrkout_msg, q_msg, pax_msg,
+                             fngs_msg, otherpax_msg, count_msg, moleskine_msg)
             msg = header_msg + "\n" + title_msg + "\n" + body
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))

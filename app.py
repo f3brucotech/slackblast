@@ -538,16 +538,16 @@ async def view_submission(ack, body, logger, client):
     try:
     # formatting a message
     # todo: change to use json object
-    header_msg = f"*BrucoBackblast*: "
-    title_msg = f"*" + title + "*"
+        header_msg = f"*BrucoBackblast*: "
+        title_msg = f"*" + title + "*"
         date_msg = f"*DATE*: " + the_date
-    wrkout_msg = f"*AO*: " + the_wrkout
-    q_msg = f"*Q*: <@" + the_q + ">"
-    pax_msg = f"*PAX*: " + pax_formatted
-    fngs_msg = f"*FNGs*: " + fngs
-    otherpax_msg = f"*OtherPAX*: " + otherpax
-    count_msg = f"*COUNT*: " + count
-    moleskine_msg = moleskine
+        wrkout_msg = f"*AO*: " + the_wrkout
+        q_msg = f"*Q*: <@" + the_q + ">"
+        pax_msg = f"*PAX*: " + pax_formatted
+        fngs_msg = f"*FNGs*: " + fngs
+        otherpax_msg = f"*OtherPAX*: " + otherpax
+        count_msg = f"*COUNT*: " + count
+        moleskine_msg = moleskine
 
         # Message the user via the app/bot name
         if config('POST_TO_CHANNEL', cast=bool):
@@ -556,21 +556,20 @@ async def view_submission(ack, body, logger, client):
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to Slack! \n{}'.format(msg))
     except Exception as slack_bolt_err:
-        logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
-            slack_bolt_err))
+        logger.error('Error with posting Slack message with chat_postMessage: {}'.format(slack_bolt_err))
         # Try again and bomb out without attempting to send email
         await client.chat_postMessage(channel=chan, text='There was an error with your submission: {}'.format(slack_bolt_err))
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
-    subject = title
-    date_msg = f"DATE: " + the_date
-    wrkout_msg = f"AO: " + the_wrkout
-    q_msg = f"Q: " + q_name
-    pax_msg = f"PAX: " + pax_names
-    fngs_msg = f"FNGs: " + fngs
-    otherpax_msg = f"OtherPAX: " + otherpax
-    count_msg = f"COUNT: " + count
-    moleskine_msg = moleskine
+            subject = title
+            date_msg = f"DATE: " + the_date
+            wrkout_msg = f"AO: " + the_wrkout
+            q_msg = f"Q: " + q_name
+            pax_msg = f"PAX: " + pax_names
+            fngs_msg = f"FNGs: " + fngs
+            otherpax_msg = f"OtherPAX: " + otherpax
+            count_msg = f"COUNT: " + count
+            moleskine_msg = moleskine
 
             body_email = make_body(date_msg, wrkout_msg, q_msg, pax_msg, fngs_msg, otherpax_msg, count_msg, moleskine_msg)
             sendmail.send(subject=subject, recipient=email_to, body=body_email)
@@ -585,13 +584,13 @@ async def view_submission(ack, body, logger, client):
 
 def make_body(date, the_wrkout, q, pax, fngs, otherpax, count, moleskine):
     return date + \
-    "\n" + the_wrkout + \
-    "\n" + q + \
-    "\n" + pax + \
-    "\n" + fngs + \
-    "\n" + otherpax + \
-    "\n" + count + \
-    "\n" + moleskine
+        "\n" + the_wrkout + \
+        "\n" + q + \
+        "\n" + pax + \
+        "\n" + fngs + \
+        "\n" + otherpax + \
+        "\n" + count + \
+        "\n" + moleskine
 
 
 # @slack_app.options("es_categories")
